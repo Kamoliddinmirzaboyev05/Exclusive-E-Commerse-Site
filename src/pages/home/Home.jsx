@@ -262,6 +262,9 @@ function Home({ products, likedProducts, userInfo, getData, getWishlist }) {
                 <h2>Product nomi</h2>
                 <div className="selectColor">
                   <div className="partTitle">
+                    <h1>
+                      sarvarbek qo'shildi
+                    </h1>
                     <h3>Color: </h3>
                     <p>{colorName ? colorName : null}</p>
                   </div>
