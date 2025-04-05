@@ -1,0 +1,114 @@
+.signInText {
+    display: flex;
+    flex-direction: column;
+    width: 370px;
+}
+
+.signIn .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 260px;
+    padding-bottom: 260px;
+}
+
+.signIn {
+    position: relative;
+
+}
+
+.signInImg {
+    position: absolute;
+    left: 0px;
+}
+
+.signInText h1 {
+    font-size: 36px;
+    font-weight: 500;
+    padding-bottom: 24px;
+}
+
+.signInText p {
+    font-size: 16px;
+    font-weight: 400;
+    padding-bottom: 48px;
+}
+
+.signInText input {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 1);
+    padding: 8px 0px;
+}
+
+.signInText button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 48px;
+    gap: 10px;
+}
+
+.signInText h5 {
+    text-align: center;
+    padding-top: 32px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.signInText .Account {
+    padding: 16px 48px;
+    background-color: #DB4444;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 4px;
+}
+
+.google {
+    background-color: white;
+    color: black;
+    border-radius: 4px;
+    border: .5px solid black;
+}
+.signInIcon{
+    display: flex;
+    
+    justify-content: space-between;
+}
+.signInIcon button{
+    background-color: #DB4444;
+    border: none;
+    border-radius: 4px;
+    color: white;
+
+}
+.signInIcon p{
+    color: #DB4444;
+    padding-top: 15px;
+    cursor: pointer;
+}
+button{
+    cursor: pointer;
+}
+.signIn a{
+    color: red;
+    text-decoration: none;
+}
+.signIn {
+    position: relative;
+
+}
+
+.signInImg {
+    position: absolute;
+    left: 0px;
+}
+.signIn .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 260px;
+    padding-bottom: 260px;
+}

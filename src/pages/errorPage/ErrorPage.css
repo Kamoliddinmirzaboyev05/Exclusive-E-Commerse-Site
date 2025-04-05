@@ -1,0 +1,26 @@
+.pageWay {
+  padding-top: 80px;
+  padding-bottom: 140px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.mainText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+  padding-bottom: 140px;
+}
+.mainText h1{
+    font-size: 110px;
+    line-height: 115px;
+    letter-spacing: 3%;
+}
+.mainText p{
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 3%;
+    font-weight: 400;
+}

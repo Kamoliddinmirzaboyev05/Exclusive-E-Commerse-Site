@@ -1,0 +1,147 @@
+.navtop {
+  background-color: #170603;
+  padding: 12px 0;
+  color: #fafafa;
+  text-align: center;
+}
+.navtop .container {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 400px;
+}
+nav {
+  overflow: visible;
+  position: relative;
+}
+.mainNav {
+  border-bottom: 0.5px solid #b3b3b3;
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  z-index: 99;
+  top: 0;
+}
+
+.hidden {
+  display: none;
+}
+.modalItem {
+  color: white;
+}
+.modalBack {
+  /* width: ; */
+  width: 100%;
+  height: 100vh;
+  z-index: 200;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.navBtns a {
+  position: relative;
+}
+.productsLength {
+  width: 15px;
+  height: 15px;
+  font-size: 10px;
+  color: white;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #db4444;
+}
+.navModal {
+  position: absolute;
+  top: 80px;
+  right: 150px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  z-index: 99;
+  padding: 24px 22px;
+  border-radius: 4px;
+  color: white;
+  width: 224px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.modalItem {
+  cursor: pointer;
+  display: flex;
+  justify-content: start;
+  transition: all 0.5s ease;
+  gap: 12px;
+}
+.modalItem:hover {
+  color: #db4444;
+}
+.modalItem p {
+  font-size: 14px;
+  line-height: 21px;
+}
+.modalItem svg {
+  font-size: 20px;
+}
+.mainNav .container {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 16px;
+}
+.mainNav .container .navLinks {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+}
+.mainNav .container .navLinks a {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-decoration: none;
+  color: #000;
+}
+.mainNav .container .navLinks a.active {
+  border-bottom: #808080 solid 1px;
+}
+.navBtns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+.navBtns form {
+  display: flex;
+  justify-content: start;
+  gap: 24px;
+  margin-right: 8px;
+  background-color: #f5f5f5;
+  padding: 7px 12px 7px 20px;
+  border-radius: 5px;
+}
+.navBtns form input {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+.navBtns button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.navBtns i {
+  font-size: 20px;
+}
+.navBtns svg {
+  font-size: 25px;
+}
+.MuiSelect-select {
+  color: white !important;
+  border: none !important;
+}

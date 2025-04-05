@@ -1,0 +1,78 @@
+footer {
+  background-color: #000000;
+  padding-top: 80px;
+}
+footer .container {
+  display: flex;
+  justify-content: space-between;
+}
+.col {
+  color: #fafafa;
+  padding-bottom: 60px;
+}
+footer .container .col h1 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 3%;
+  padding-bottom: 24px;
+}
+footer .container .col h2 {
+  padding-bottom: 24px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  cursor: pointer;
+}
+footer .container .col p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  padding-bottom: 16px;
+  cursor: pointer;
+}
+footer .container .col form {
+  border: 1.5px solid #fafafa;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  padding: 12px 16px;
+}
+footer .container .col form input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #fafafa;
+  font-size: 16px;
+  width: 130px;
+}
+footer .container .col form button {
+  background-color: transparent;
+  border: none;
+}
+.footerImgs {
+  display: flex;
+  justify-content: start;
+  gap: 8px;
+}
+.downloadApp {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.copy {
+  border-top: #141414 1px solid;
+  padding-top: 16px;
+  padding-bottom: 24px;
+}
+.copy .container p {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: #3d3d3d;
+}

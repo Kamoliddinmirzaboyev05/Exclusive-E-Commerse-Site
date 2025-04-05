@@ -1,0 +1,63 @@
+.WishlistTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 60px;
+}
+.WishlistTitle button {
+  padding: 16px 48px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 4px;
+  border: 1.5px solid rgba(0, 0, 0, 0.4);
+  background-color: white;
+}
+.WishlistTitle h3 {
+  font-size: 20px;
+  font-weight: 400;
+}
+.Wishlist {
+  padding-top: 80px;
+}
+.emptyText {
+  position: absolute;
+  top: 0;
+  left: 15%;
+}
+.emptyText h1{
+    color: rgb(178, 178, 178);
+}
+.Wishlist .addCartBtn {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  gap: 8px;
+}
+.Just .addCartBtn {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  gap: 8px;
+}
+.justTitle p {
+  font-size: 20px;
+  font-weight: 400;
+  color: black;
+}
+.justTitle {
+  display: flex;    
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 60px;
+}
+.justTitle button {
+  padding: 16px 48px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 4px;
+  border: 1.5px solid rgba(0, 0, 0, 0.4);
+  background-color: white;
+}
+.Just {
+  padding-bottom: 140px;
+}

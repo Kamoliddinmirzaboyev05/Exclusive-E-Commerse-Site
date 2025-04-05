@@ -1,0 +1,134 @@
+.outStory {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding-bottom: 140px;
+  overflow: hidden;
+}
+.storyText {
+  width: 585px;
+}
+.storyText h2 {
+  font-size: 54px;
+  line-height: 64px;
+  letter-spacing: 6%;
+  font-weight: 600;
+  padding-bottom: 40px;
+}
+.storyText p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  padding-bottom: 24px;
+}
+.storyImg {
+  position: relative;
+  width: 400px;
+  height: 609px;
+}
+.storyImg img {
+  position: absolute;
+  z-index: 99;
+  right: -380px;
+  width: 700px;
+  height: 609px;
+}
+.aboutUsBlock {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding-bottom: 140px;
+}
+.aboutUsBox {
+  border: 1px solid #0000004d;
+  width: 270px;
+  height: 230px;
+  display: flex;
+  align-items: center;
+  transition: 0.5s ease;
+  justify-content: center;
+  flex-direction: column;
+}
+.aboutUsBoxIcon {
+  width: 80px;
+  height: 80px;
+  background-color: black;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 11px solid #c1c0c1;
+  margin-bottom: 24px;
+}
+.aboutUsBox svg,
+.aboutUsBox i {
+  font-size: 40px;
+  color: white;
+  transition: all 0.5s ease;
+}
+.aboutUsBox i {
+  font-size: 30px;
+}
+.aboutUsBox:hover {
+  background-color: #db4444;
+  color: white;
+}
+.aboutUsBox:hover .aboutUsBoxIcon {
+  background-color: white;
+  border: 11px solid #e67c7c;
+}
+.aboutUsBox:hover svg {
+  color: black !important;
+}
+.aboutUsBox:hover i {
+  color: black !important;
+}
+.aboutUsBox h2 {
+  font-size: 32px;
+}
+.ourWorkersBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 140px;
+}
+.ourWorkerBox {
+  width: 370px;
+}
+.workerData {
+  padding-top: 24px;
+  padding-bottom: 80px;
+}
+.workerData h2 {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: 3%;
+  padding-bottom: 8px;
+}
+.workerData p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  padding-bottom: 16px;
+}
+.workerSocials {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.ourWorkersBlock .swiper-pagination-bullet {
+  background-color: #b3b3b3 !important;
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50% !important;
+}
+.ourWorkersBlock .swiper-pagination-bullet-active {
+  background-color: #db4444 !important;
+}
+.swiper-pagination {
+  bottom: 0px !important;
+}
+.aboutPage .services .container {
+  padding-top: 0;
+}

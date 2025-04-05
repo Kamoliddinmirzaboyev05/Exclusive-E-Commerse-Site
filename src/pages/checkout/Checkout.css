@@ -1,0 +1,134 @@
+.mainContent {
+  display: flex;
+  justify-content: space-between;
+}
+.details {
+  width: 470px;
+}
+.details h2 {
+  color: black;
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 30px;
+  padding-bottom: 48px;
+}
+.details form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.formItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.formItem input {
+  width: 100%;
+  background-color: #f5f5f5;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  padding: 14px ;
+}
+.formItem label {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #808080;
+}
+.check {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+}
+.check input{
+  width: 24px ;
+  height: 24px;
+}
+.BankRadio input[type="radio"] {
+  accent-color: red; /* Qizil rang */
+  width: 24px ;
+  height: 24px;
+}
+.check input[type="checkbox"] {
+  accent-color: red; /* Qizil fon */
+}
+
+.check p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.checkoutProducts {
+  width: 530px;
+  padding-top: 113px;
+}
+.orderProducts {
+  display: flex;
+  flex-direction: column;
+}
+.orderProductItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 32px;
+}
+.orderProductData {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.productItemImg {
+  width: 54px;
+  height: 54px;
+}
+.productItemImg img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.rowCalculate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: #999999 1px solid;
+  padding-top: 16px;
+}
+.rowactive{
+  border: none;
+}
+.BankRadio{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 16px ;
+  font-weight: 400;
+}
+.bank{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 18px;
+  padding-bottom: 30px;
+}
+.checkoutProducts .CartCupon{
+  justify-content: space-between;
+  padding-top: 30px;
+}
+.checkoutProducts .CartCupon input{
+  padding-right: 70px;
+}
+.Place{
+  padding-top: 30px;
+}
+.Place button{
+  padding: 16px 48px;
+  font-size: 16px ;
+  font-weight: 500;
+  border-radius: 4px;
+  color: white;
+  background-color: #DF4028;
+  border: 1.5px solid #DF4028;
+}
