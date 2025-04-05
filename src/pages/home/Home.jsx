@@ -262,9 +262,7 @@ function Home({ products, likedProducts, userInfo, getData, getWishlist }) {
                 <h2>Product nomi</h2>
                 <div className="selectColor">
                   <div className="partTitle">
-                    <h1>
-                      sarvarbek qo'shildi
-                    </h1>
+                    
                     <h3>Color: </h3>
                     <p>{colorName ? colorName : null}</p>
                   </div>
@@ -585,6 +583,9 @@ function Home({ products, likedProducts, userInfo, getData, getWishlist }) {
             <div className="leftData">
               <p className="sectionTitle">Categories</p>
               <h2>Enhance Your Music Experience</h2>
+              <h1>
+                      sarvarbek qo'shildi
+                    </h1>
               <div className="discTimer">
                 <div className="discTimerItem">
                   <h2>23</h2>
