@@ -23,6 +23,7 @@ function OneProduct({
 }) {
   const { id } = useParams();
   const [oneProductData, setOneProductData] = useState(null);
+  const [oneModalProductData, setOneModalProductData] = useState(null);
   const [productSize, setProductSize] = useState(null);
   const [productCount, setProductCount] = useState(1);
   const [productLiked, setProductLiked] = useState(false);
@@ -53,8 +54,22 @@ function OneProduct({
       })
       .catch((error) => console.error(error));
   };
+  // getOneModalProduct function
+  const getOneModalProduct = () => {
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
 
+    fetch(`${link}/product/detail/?product_id=${productId}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setOneModalProductData(result);
+      })
+      .catch((error) => console.error(error));
+  };
   useEffect(() => {
+    getOneModalProduct();
     getOneProduct();
     getData();
   }, []);
@@ -120,18 +135,20 @@ function OneProduct({
   const closeModal = (e) => {
     if (e.target.classList.contains("cartModalBack")) {
       setShowModal(false);
-      productCount(1);
+      // productCount(1);
       setProductColor(null);
       setProductSize(null);
     } else {
       setShowModal(true);
     }
   };
+
   return (
     <div className="oneProduct">
       <main>
         <section className="mainSection">
           <div className="container">
+            {/* modal start */}
             <div
               onClick={(e) => {
                 closeModal(e);
@@ -142,8 +159,8 @@ function OneProduct({
                 <div className="leftSide">
                   <div className="modalImgBox">
                     <img
-                      src={`${link}/${oneProductData?.pictures[0].file}`}
-                      alt={oneProductData?.pictures[0].file}
+                      src={`${link}/${oneModalProductData?.pictures[0].file}`}
+                      alt={oneModalProductData?.pictures[0].file}
                     />
                   </div>
                   <button className="seeMoreBtn">Read more</button>
@@ -156,52 +173,57 @@ function OneProduct({
                       <p>{productColor ? productColor : null}</p>
                     </div>
                     <div className="selectColors">
-                      {oneProductData?.properties.color.map((color, index) => {
-                        return (
-                          <div
-                            className={
-                              productColor ==
-                              oneProductData.properties.color[index]
-                                ? "color active"
-                                : "color"
-                            }
-                            onClick={() => {
-                              setProductColor(
-                                oneProductData?.properties.color[index]
-                              );
-                            }}
-                            style={{
-                              backgroundColor:
-                                oneProductData?.properties.color[index],
-                            }}
-                          ></div>
-                        );
-                      })}
+                      {oneModalProductData?.properties.color.map(
+                        (color, index) => {
+                          return (
+                            <div
+                              className={
+                                productColor ==
+                                oneModalProductData.properties.color[index]
+                                  ? "color active"
+                                  : "color"
+                              }
+                              onClick={() => {
+                                setProductColor(
+                                  oneModalProductData?.properties.color[index]
+                                );
+                              }}
+                              style={{
+                                backgroundColor:
+                                  oneModalProductData?.properties.color[index],
+                              }}
+                            ></div>
+                          );
+                        }
+                      )}
                     </div>
                   </div>
-                  {oneProductData?.properties.size && (
+                  {oneModalProductData?.properties.size && (
                     <div className="selectSize">
                       <div className="partTitle">
                         <h3>Size: </h3>
                         <p>{productSize ? productSize : null}</p>
                       </div>
                       <div className="selectSizes">
-                        {oneProductData.properties.size.map((size, index) => {
-                          return (
-                            <div
-                              onClick={() => {
-                                setProductSize(size);
-                              }}
-                              className={
-                                productSize == oneProductData.properties.size[index]
-                                  ? "sizeItem active"
-                                  : "sizeItem"
-                              }
-                            >
-                              <p>{size}</p>
-                            </div>
-                          );
-                        })}
+                        {oneModalProductData.properties.size.map(
+                          (size, index) => {
+                            return (
+                              <div
+                                onClick={() => {
+                                  setProductSize(size);
+                                }}
+                                className={
+                                  productSize ==
+                                  oneModalProductData.properties.size[index]
+                                    ? "sizeItem active"
+                                    : "sizeItem"
+                                }
+                              >
+                                <p>{size}</p>
+                              </div>
+                            );
+                          }
+                        )}
                       </div>
                     </div>
                   )}
@@ -254,6 +276,8 @@ function OneProduct({
                 </div>
               </div>
             </div>
+
+            {/* modal end */}
             <div className="pageWay">
               <p>Account </p>
               <p>/</p>
@@ -503,6 +527,7 @@ function OneProduct({
                     return (
                       <SwiperSlide>
                         <ProductCard
+                          getOneModalProduct={getOneModalProduct}
                           key={product.id}
                           product={product}
                           userInfo={userInfo}

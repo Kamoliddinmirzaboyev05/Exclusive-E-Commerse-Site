@@ -5,6 +5,7 @@ import { link } from "../../config";
 import { toast } from "react-toastify";
 function ProductCard({
   product,
+  getOneModalProduct,
   setProductId,
   setShowModal,
   getData,
@@ -12,8 +13,6 @@ function ProductCard({
   getWishlist,
   liked,
 }) {
-  // const [isLiked, setIsLiked] = useState(false);
-
   // addtoliked function
   const addToLiked = (id) => {
     const myHeaders = new Headers();
@@ -70,14 +69,18 @@ function ProductCard({
     <Link to={`/oneProduct/${product.id}`}>
       <div className="productCard">
         <div className="productImgBox">
-          <span className="disc">
-            <p>
-              {(100 - (product.discount_price / product.price) * 100).toFixed(
-                0
-              )}
-              %
-            </p>
-          </span>
+          {Number(
+            (100 - (product.discount_price / product.price) * 100).toFixed(0)
+          ) > 0 && (
+            <span className="disc">
+              <p>
+                {(100 - (product.discount_price / product.price) * 100).toFixed(
+                  0
+                )}
+                %
+              </p>
+            </span>
+          )}
           {!liked && (
             <>
               <div className="hoverBtn heartBtn">
@@ -135,6 +138,7 @@ function ProductCard({
           <button
             onClick={(e) => {
               if (userInfo.id) {
+                getOneModalProduct();
                 setProductId(product?.id);
                 e.preventDefault();
                 setShowModal(true);
