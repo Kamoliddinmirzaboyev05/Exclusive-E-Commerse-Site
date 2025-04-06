@@ -17,6 +17,7 @@ import Wishlist from "./pages/wishlist/Wishlist";
 import { Bounce, ToastContainer } from "react-toastify";
 import { link } from "./config";
 import Search from "./pages/search/Search";
+import CategoryFilter from "./pages/categoryFilter/CategoryFilter";
 function App() {
   const [userInfo, setUserInfo] = useState(null);
   const [products, setProducts] = useState(null);
@@ -68,8 +69,31 @@ function App() {
       .catch((error) => console.error(error));
   };
 
-
   const [likedProducts, setLikedProducts] = useState(null);
+  const [cartProducts, setCartProducts] = useState(null);
+  // getCartProducts Function
+  const getCartProducts = () => {
+    const myHeaders = new Headers();
+    if (localStorage.getItem("token")) {
+      myHeaders.append(
+        "Authorization",
+        `Bearer ${localStorage.getItem("token")}`
+      );
+    }
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch(`${link}/order/cart-items/`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setCartProducts(result);
+      })
+      .catch((error) => console.error(error));
+  };
 
   // getmywishlist function
   const getWishlist = () => {
@@ -104,6 +128,7 @@ function App() {
   useEffect(() => {
     getUserData();
     getWishlist();
+    getCartProducts();
   }, []);
   return (
     <BrowserRouter>
@@ -121,6 +146,8 @@ function App() {
         transition={Bounce}
       />
       <Navbar
+        getCartProducts={getCartProducts}
+        cartProducts={cartProducts}
         getWishlist={getWishlist}
         likedProducts={likedProducts}
         userInfo={userInfo}
@@ -131,6 +158,7 @@ function App() {
           path="/"
           element={
             <Home
+              getCartProducts={getCartProducts}
               likedProducts={likedProducts}
               products={products}
               getData={getData}
@@ -142,8 +170,9 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
         <Route path="/account" element={<Account userInfo={userInfo} />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={<Cart cartProducts={cartProducts}  getCartProducts={getCartProducts} />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/categoryfilter/category/:id" element={<CategoryFilter />} />
         <Route
           path="/search"
           element={<Search searchVal={searchVal} products={products} />}

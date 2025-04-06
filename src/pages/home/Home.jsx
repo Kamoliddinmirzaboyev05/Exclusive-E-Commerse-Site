@@ -18,7 +18,7 @@ import { link } from "../../config";
 import { Card, CardContent, Typography } from "@mui/material";
 import { toast } from "react-toastify";
 
-function Home({ products, likedProducts, userInfo, getData, getWishlist }) {
+function Home({ products, getCartProducts, userInfo, getData, getWishlist }) {
   const [categories, setCategories] = useState(null);
   const [productCount, setProductCount] = useState(4);
   const [showModal, setShowModal] = useState(false);
@@ -118,6 +118,10 @@ function Home({ products, likedProducts, userInfo, getData, getWishlist }) {
       .then((result) => {
         toast.success(result);
         setShowModal(false);
+        getCartProducts();
+        setQuantity(1)
+        setColorName(null)
+        setSizeVal(null)
       })
       .catch((error) => console.error(error));
   };
@@ -154,14 +158,21 @@ function Home({ products, likedProducts, userInfo, getData, getWishlist }) {
             <div className="heroFilter">
               {categories?.map((category) => {
                 return (
-                  <div key={category.id} className="row">
-                    <p>{category.title}</p>
+                  <Link
+                    to={`/categoryfilter/category/${category.id}`}
+                    key={category.id}
+                    className="row"
+                  >
+                    <div className="categoryData">
+                      <img src={category.image} alt={category.title} />
+                      <p>{category.title}</p>
+                    </div>
                     <i className="fas fa-chevron-right"></i>
-                  </div>
+                  </Link>
                 );
               })}
               {!categories &&
-                [1, 2, 3, 4, 5, 6].map((item) => {
+                [1, 2, 3, 4, 5].map((item) => {
                   return (
                     <Box sx={{ width: 150 }}>
                       <Skeleton
@@ -445,12 +456,9 @@ function Home({ products, likedProducts, userInfo, getData, getWishlist }) {
                         width={220}
                         height={180}
                       />
-
                       <CardContent>
                         <Skeleton variant="text" width="80%" height={30} />
-
                         <Skeleton variant="text" width="40%" height={20} />
-
                         <Skeleton
                           style={{ marginBottom: "20px" }}
                           variant="rectangular"
@@ -488,10 +496,14 @@ function Home({ products, likedProducts, userInfo, getData, getWishlist }) {
             <div className="categoryBlock">
               {categories?.map((category) => {
                 return (
-                  <div key={category.id} className="categoryBox">
-                    <CiMobile1 />
+                  <Link
+                    to={`categoryfilter/category/${category.id}`}
+                    key={category.id}
+                    className="categoryBox"
+                  >
+                    <img src={category.image} alt="" />
                     <p>{category.title}</p>
-                  </div>
+                  </Link>
                 );
               })}
               {!categories &&
@@ -536,8 +548,12 @@ function Home({ products, likedProducts, userInfo, getData, getWishlist }) {
                     return (
                       <SwiperSlide>
                         <ProductCard
+                          userInfo={userInfo}
+                          setProductId={setProductId}
                           setShowModal={setShowModal}
                           key={product.id}
+                          getData={getData}
+                          getWishlist={getWishlist}
                           product={product}
                         />
                       </SwiperSlide>

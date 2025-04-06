@@ -12,7 +12,13 @@ import { LuShoppingBag } from "react-icons/lu";
 import { FaRegUser } from "react-icons/fa";
 import { Skeleton } from "@mui/material";
 import { link } from "../../config";
-function Navbar({ userInfo, getWishlist, setSearchVal, likedProducts }) {
+function Navbar({
+  userInfo,
+  cartProducts,
+  getCartProducts,
+  setSearchVal,
+  likedProducts,
+}) {
   const [til, setAge] = React.useState("");
   const [showModal, setShowModal] = useState(false);
   const handleChange = (event) => {
@@ -25,40 +31,6 @@ function Navbar({ userInfo, getWishlist, setSearchVal, likedProducts }) {
       ? setShowModal(null)
       : setShowModal(true);
   };
-
-  // useEffect(() => {
-  //   getWishlist();
-  // }, [likedProducts]);
-
-  // Getcart products function
-
-  const [cartProducts, setCartProducts] = useState(null);
-  const getCartProducts = () => {
-    const myHeaders = new Headers();
-    if (localStorage.getItem("token")) {
-      myHeaders.append(
-        "Authorization",
-        `Bearer ${localStorage.getItem("token")}`
-      );
-    }
-
-    const requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-
-    fetch(`${link}/order/cart-items/`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        setCartProducts(result);
-      })
-      .catch((error) => console.error(error));
-  };
-
-  useEffect(() => {
-    getCartProducts();
-  }, []);
 
   return (
     <div className="navbar">
@@ -153,7 +125,7 @@ function Navbar({ userInfo, getWishlist, setSearchVal, likedProducts }) {
               </form>
               <Link to={"/wishlist"}>
                 <button>
-                  {(userInfo?.id && likedProducts?.length > 0) && (
+                  {userInfo?.id && likedProducts?.length > 0 && (
                     <p className="productsLength">{likedProducts?.length}</p>
                   )}
                   <i className="fa-regular fa-heart"></i>
@@ -161,8 +133,9 @@ function Navbar({ userInfo, getWishlist, setSearchVal, likedProducts }) {
               </Link>
               <Link to={"/cart"}>
                 <button>
-                  {userInfo?.id && (
+                  {userInfo?.id && cartProducts?.cart_items?.length > 0 && (
                     <p className="productsLength">
+                      {" "}
                       {cartProducts?.cart_items?.length}
                     </p>
                   )}

@@ -12,10 +12,10 @@
   padding-top: 40px;
   border-right: 0.5px solid #b3b3b3;
   padding-right: 16px;
-  width: 220px;
+  width: 260px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 26px;
 }
 
 .heroFilter .row {
@@ -24,7 +24,19 @@
   align-items: center;
   cursor: pointer;
 }
-
+.categoryData {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.categoryData p {
+  font-size: 15px;
+}
+.categoryData img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
 .heroSlider {
   padding-top: 40px;
 }
@@ -76,9 +88,9 @@
   background-color: black;
 }
 .selectColors .color.active {
-  box-shadow: 0px 0px 10px 2px #DB4444;
+  box-shadow: 0px 0px 10px 2px #db4444;
 }
-.flashSales .sectionTitle{
+.flashSales .sectionTitle {
   padding-bottom: 0;
 }
 .flashSales .cartModalBack .selectColor {
@@ -86,7 +98,7 @@
   border-bottom: 3px solid #b3b3b3;
   padding: 10px 0;
 }
-.productQuantity{
+.productQuantity {
   width: 50px !important;
 }
 .flashSales .cartModalBack .rightSide .partTitle {
@@ -306,7 +318,11 @@
   flex-direction: column;
   cursor: pointer;
 }
-
+.categoryBox img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
 .categoryBox:hover {
   background-color: #db4444;
 }
@@ -327,6 +343,10 @@
 
 .bestSelling .container {
   padding-top: 70px;
+}
+.swiper-pagination-bullet {
+  background-color: #e07575 !important;
+  color: black !important;
 }
 
 /* Styling discAdd section */
@@ -638,7 +658,7 @@
   left: 65px !important;
 }
 .swiper-pagination-bullet {
-  background-color: white !important;
+  background-color: #e07575 !important;
 }
 .swiper-pagination-bullet-active {
   background-color: #db4444 !important;

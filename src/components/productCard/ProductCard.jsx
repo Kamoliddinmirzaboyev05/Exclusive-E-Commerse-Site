@@ -12,6 +12,8 @@ function ProductCard({
   getWishlist,
   liked,
 }) {
+  // const [isLiked, setIsLiked] = useState(false);
+
   // addtoliked function
   const addToLiked = (id) => {
     const myHeaders = new Headers();
@@ -30,6 +32,7 @@ function ProductCard({
       .then((response) => response.json())
       .then((result) => {
         toast.success(result.message);
+        getWishlist();
         getData();
       })
       .catch((error) => console.error(error));
@@ -56,8 +59,9 @@ function ProductCard({
     )
       .then((response) => response.text())
       .then((result) => {
+        getData();
         toast.info("Maxsulot istaklar ro'yhatidan olib tashlandi!");
-        window.location.reload();
+        getWishlist();
       })
       .catch((error) => console.error(error));
   };
@@ -76,25 +80,33 @@ function ProductCard({
           </span>
           {!liked && (
             <>
-              <div
-                onClick={(e) => {
-                  if (userInfo.id) {
-                    e.preventDefault();
-                    getWishlist();
-                    addToLiked(product.id);
-                  } else {
-                    e.preventDefault();
-                    navigate("/signup");
-                  }
-                }}
-                className="hoverBtn heartBtn"
-              >
+              <div className="hoverBtn heartBtn">
                 <i
+                  onClick={(e) => {
+                    if (userInfo.id) {
+                      e.preventDefault();
+                      addToLiked(product.id);
+                    } else {
+                      e.preventDefault();
+                      navigate("/signup");
+                    }
+                  }}
                   className={
-                    product.is_liked
-                      ? "fa-solid fa-heart"
-                      : "fa-regular fa-heart"
+                    product?.is_liked ? "hidden" : "fa-regular fa-heart"
                   }
+                ></i>
+                <i
+                  onClick={(e) => {
+                    if (userInfo.id) {
+                      e.preventDefault();
+                      deleteFromLiked(product.id);
+                      getData();
+                    } else {
+                      e.preventDefault();
+                      navigate("/signup");
+                    }
+                  }}
+                  className={product?.is_liked ? "fa-solid fa-heart" : "hidden"}
                 ></i>
               </div>
               <div className="hoverBtn eyeBtn">

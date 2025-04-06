@@ -4,7 +4,11 @@ import ProductCard from "../../components/productCard/ProductCard";
 import { Card, CardContent, Skeleton } from "@mui/material";
 function Search({ products, searchVal }) {
   const filteredProducts = products?.filter((product) => {
-    return product.title?.toLowerCase().includes(searchVal?.toLowerCase());
+    if (searchVal) {
+      return product.title?.toLowerCase().includes(searchVal?.toLowerCase());
+    } else {
+      return product;
+    }
   });
 
   return (

@@ -4,35 +4,7 @@ import { Link } from "react-router-dom";
 import { link } from "../../config";
 import { toast } from "react-toastify";
 
-function Cart() {
-  // getcartproducts function
-  const [cartProducts, setCartProducts] = useState(null);
-  const getCartProducts = () => {
-    const myHeaders = new Headers();
-    myHeaders.append(
-      "Authorization",
-      `Bearer ${localStorage.getItem("token")}`
-    );
-
-    const requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-
-    fetch(`${link}/order/cart-items/`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        setCartProducts(result);
-        console.log(result);
-      })
-      .catch((error) => console.error(error));
-  };
-
-  useEffect(() => {
-    getCartProducts();
-  }, [cartProducts]);
-
+function Cart({ getCartProducts, cartProducts }) {
   // delete product function
   const deleteCartProduct = (id) => {
     const myHeaders = new Headers();
@@ -48,10 +20,17 @@ function Cart() {
     };
 
     fetch(`${link}/order/remove-from-cart?cart_item_id=${id}`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => console.log(result))
+      .then((response) => response.text())
+      .then((result) => {
+        getCartProducts();
+      })
       .catch((error) => console.error(error));
   };
+  useEffect(() => {
+    window.scrollTo({
+      top: "0",
+    });
+  });
   return (
     <>
       <div className="cart">
@@ -74,7 +53,8 @@ function Cart() {
                   <div className="cartBoxs">
                     <div className="cartBoxImg">
                       <div
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.preventDefault();
                           deleteCartProduct(item.id);
                           toast.success(
                             "Mahsulot savatchadan muvaffaqiyatli o'chirildi!"
