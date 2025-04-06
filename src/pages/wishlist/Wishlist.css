@@ -17,15 +17,15 @@
   font-weight: 400;
 }
 .Wishlist {
-  padding-top: 80px;
+  padding: 80px 0;
 }
 .emptyText {
   position: absolute;
   top: 0;
   left: 15%;
 }
-.emptyText h1{
-    color: rgb(178, 178, 178);
+.emptyText h1 {
+  color: rgb(178, 178, 178);
 }
 .Wishlist .addCartBtn {
   display: flex;
@@ -45,7 +45,7 @@
   color: black;
 }
 .justTitle {
-  display: flex;    
+  display: flex;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 60px;

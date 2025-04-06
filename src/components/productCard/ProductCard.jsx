@@ -34,6 +34,7 @@ function ProductCard({
       })
       .catch((error) => console.error(error));
   };
+
   const navigate = useNavigate();
   // Delete from liked function
   const deleteFromLiked = (id) => {
@@ -79,6 +80,7 @@ function ProductCard({
                 onClick={(e) => {
                   if (userInfo.id) {
                     e.preventDefault();
+                    getWishlist();
                     addToLiked(product.id);
                   } else {
                     e.preventDefault();

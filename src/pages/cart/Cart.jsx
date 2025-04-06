@@ -70,41 +70,43 @@ function Cart() {
           <div className="cartProductsBlock">
             {cartProducts?.cart_items.map((item) => {
               return (
-                <div className="cartBoxs">
-                  <div className="cartBoxImg">
-                    <div
-                      onClick={() => {
-                        deleteCartProduct(item.id);
-                        toast.success(
-                          "Mahsulot savatchadan muvaffaqiyatli o'chirildi!"
-                        );
-                      }}
-                      className="Cartcancel"
-                    >
-                      <img src="/public/icon-cancel.svg" alt="" />
+                <Link to={`/oneProduct/${item.product_id}`}>
+                  <div className="cartBoxs">
+                    <div className="cartBoxImg">
+                      <div
+                        onClick={() => {
+                          deleteCartProduct(item.id);
+                          toast.success(
+                            "Mahsulot savatchadan muvaffaqiyatli o'chirildi!"
+                          );
+                        }}
+                        className="Cartcancel"
+                      >
+                        <img src="/public/icon-cancel.svg" alt="" />
+                      </div>
+                      <div>
+                        <img src={`${link}/${item.pictures[0].file}`} alt="" />
+                      </div>
+                      <div>
+                        <p>{String(item.title).slice(0, 23)}</p>
+                      </div>
                     </div>
-                    <div>
-                      <img src={`${link}/${item.pictures[0].file}`} alt="" />
+                    <div className="cartBoxPrice">
+                      <p>{item.discount_price}</p>
                     </div>
-                    <div>
-                      <p>{String(item.title).slice(0, 23)}</p>
+                    <div className="cartBoxInput">
+                      <input
+                        type="number"
+                        min="1"
+                        max="99"
+                        value={item.quantity}
+                      />
+                    </div>
+                    <div className="cartBoxSubtotal">
+                      <p>{item.subtotal}</p>
                     </div>
                   </div>
-                  <div className="cartBoxPrice">
-                    <p>{item.discount_price}</p>
-                  </div>
-                  <div className="cartBoxInput">
-                    <input
-                      type="number"
-                      min="1"
-                      max="99"
-                      value={item.quantity}
-                    />
-                  </div>
-                  <div className="cartBoxSubtotal">
-                    <p>{item.subtotal}</p>
-                  </div>
-                </div>
+                </Link>
               );
             })}
           </div>

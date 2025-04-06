@@ -153,7 +153,7 @@ function Navbar({ userInfo, getWishlist, setSearchVal, likedProducts }) {
               </form>
               <Link to={"/wishlist"}>
                 <button>
-                  {userInfo?.id && (
+                  {(userInfo?.id && likedProducts?.length > 0) && (
                     <p className="productsLength">{likedProducts?.length}</p>
                   )}
                   <i className="fa-regular fa-heart"></i>

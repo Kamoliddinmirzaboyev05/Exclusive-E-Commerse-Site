@@ -2,7 +2,18 @@ import React, { useEffect, useState } from "react";
 import "./OneProduct.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { link } from "../../config";
-function OneProduct({ userInfo }) {
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+
+// import required modules
+import { Pagination } from "swiper/modules";
+import ProductCard from "../../components/productCard/ProductCard";
+
+function OneProduct({ userInfo, products }) {
   const { id } = useParams();
   const [oneProductData, setOneProductData] = useState(null);
   const [productSize, setProductSize] = useState("M");
@@ -29,8 +40,6 @@ function OneProduct({ userInfo }) {
     fetch(`${link}/product/detail/?product_id=${id}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
-
         setOneProductData(result);
       })
       .catch((error) => console.error(error));
@@ -73,6 +82,28 @@ function OneProduct({ userInfo }) {
       })
       .catch((error) => console.error(error));
   };
+
+  const addToLiked = () => {
+    const myHeaders = new Headers();
+    myHeaders.append(
+      "Authorization",
+      `Bearer ${localStorage.getItem("token")}`
+    );
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    fetch(`${link}/action/add-to-wishlist/?product_id=${id}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        toast.success(result.message);
+        // getData();
+      })
+      .catch((error) => console.error(error));
+  };
+  console.log(oneProductData);
+
   return (
     <div className="oneProduct">
       <main>
@@ -230,7 +261,6 @@ function OneProduct({ userInfo }) {
                     </div>
                   </div>
                 )}
-
                 <div className="mainBtns">
                   <div className="counter">
                     <button
@@ -266,7 +296,12 @@ function OneProduct({ userInfo }) {
                   </button>
                   <button
                     onClick={() => {
-                      setProductLiked(!productLiked);
+                      if (userInfo.id) {
+                        addToLiked();
+                        setProductLiked(!productLiked);
+                      } else {
+                        navigate("/signup");
+                      }
                     }}
                     className="likeBtn"
                   >
@@ -310,118 +345,27 @@ function OneProduct({ userInfo }) {
               <p>Related Item</p>
             </div>
             <div className="productsBlock">
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
+              <Swiper
+                slidesPerView={4}
+                spaceBetween={30}
+                pagination={{
+                  clickable: true,
+                }}
+                modules={[Pagination]}
+                className="mySwiper"
+              >
+                {products?.map((product) => {
+                  if (oneProductData?.category.id == product.category.id) {
+                    return (
+                      <SwiperSlide>
+                        <ProductCard key={product.id} product={product} />
+                      </SwiperSlide>
+                    );
+                  } else {
+                    return;
+                  }
+                })}
+              </Swiper>
             </div>
           </div>
         </section>

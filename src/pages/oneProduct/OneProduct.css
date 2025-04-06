@@ -257,3 +257,10 @@
 .oneProduct .sectionType {
   padding-bottom: 70px;
 }
+.bestSelling .swiper-slide{
+  margin-bottom: 30px;
+}
+.swiper-pagination{
+  bottom: -20px !important;
+  top: 380px !important;
+}

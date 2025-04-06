@@ -153,7 +153,7 @@ function Account({ userInfo }) {
               </div>
               <div className="rowItem phoneInput">
                 <label>Phone</label>
-                <input
+                <input required
                   onChange={(e) => {
                     setPhone(e.target.value);
                   }}

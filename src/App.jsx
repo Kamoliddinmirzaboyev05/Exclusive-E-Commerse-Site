@@ -68,6 +68,7 @@ function App() {
       .catch((error) => console.error(error));
   };
 
+
   const [likedProducts, setLikedProducts] = useState(null);
 
   // getmywishlist function
@@ -153,12 +154,11 @@ function App() {
             <Wishlist getWishlist={getWishlist} likedProducts={likedProducts} />
           }
         />
-
         <Route path="/signin" element={<SignIn getUserData={getUserData} />} />
         <Route path="/signup" element={<SignUp />} />
         <Route
           path="/oneProduct/:id"
-          element={<OneProduct userInfo={userInfo} />}
+          element={<OneProduct products={products} userInfo={userInfo} />}
         />
         <Route path="*" element={<ErrorPage />} />
       </Routes>

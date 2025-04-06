@@ -117,12 +117,13 @@ function Home({ products, likedProducts, userInfo, getData, getWishlist }) {
       .then((response) => response.json())
       .then((result) => {
         toast.success(result);
+        setShowModal(false);
       })
       .catch((error) => console.error(error));
   };
 
   // Discount timer function
-  const targetDate = new Date("2025-04-05T23:59:59");
+  const targetDate = new Date("2025-04-10T23:59:59");
   const calculateTimeLeft = () => {
     const difference = targetDate - new Date();
     if (difference <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
@@ -262,7 +263,6 @@ function Home({ products, likedProducts, userInfo, getData, getWishlist }) {
                 <h2>Product nomi</h2>
                 <div className="selectColor">
                   <div className="partTitle">
-                    
                     <h3>Color: </h3>
                     <p>{colorName ? colorName : null}</p>
                   </div>
@@ -551,18 +551,14 @@ function Home({ products, likedProducts, userInfo, getData, getWishlist }) {
                 [1, 2, 3, 4].map((item) => {
                   return (
                     <Card sx={{ maxWidth: 300, p: 3 }}>
-                      {/* Mahsulot rasmi uchun Skeleton */}
                       <Skeleton
                         variant="rectangular"
                         width={220}
                         height={180}
                       />
-
                       <CardContent>
                         <Skeleton variant="text" width="80%" height={30} />
-
                         <Skeleton variant="text" width="40%" height={20} />
-
                         <Skeleton
                           style={{ marginBottom: "20px" }}
                           variant="rectangular"
@@ -583,9 +579,7 @@ function Home({ products, likedProducts, userInfo, getData, getWishlist }) {
             <div className="leftData">
               <p className="sectionTitle">Categories</p>
               <h2>Enhance Your Music Experience</h2>
-              <h1>
-                      sarvarbek qo'shildi
-                    </h1>
+              <h1>sarvarbek qo'shildi</h1>
               <div className="discTimer">
                 <div className="discTimerItem">
                   <h2>23</h2>
