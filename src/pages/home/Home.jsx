@@ -87,8 +87,8 @@ function Home({ products, getCartProducts, userInfo, getData, getWishlist }) {
       setShowModal(true);
     }
   };
-  // Add to cart function
 
+  // Add to cart function
   const addToCart = () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -119,9 +119,9 @@ function Home({ products, getCartProducts, userInfo, getData, getWishlist }) {
         toast.success(result);
         setShowModal(false);
         getCartProducts();
-        setQuantity(1)
-        setColorName(null)
-        setSizeVal(null)
+        setQuantity(1);
+        setColorName(null);
+        setSizeVal(null);
       })
       .catch((error) => console.error(error));
   };
@@ -161,8 +161,7 @@ function Home({ products, getCartProducts, userInfo, getData, getWishlist }) {
                   <Link
                     to={`/categoryfilter/category/${category.id}`}
                     key={category.id}
-                    className="row"
-                  >
+                    className="row">
                     <div className="categoryData">
                       <img src={category.image} alt={category.title} />
                       <p>{category.title}</p>

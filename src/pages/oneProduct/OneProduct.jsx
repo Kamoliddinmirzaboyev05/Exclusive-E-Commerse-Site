@@ -12,15 +12,24 @@ import "swiper/css/pagination";
 // import required modules
 import { Pagination } from "swiper/modules";
 import ProductCard from "../../components/productCard/ProductCard";
+import { toast } from "react-toastify";
 
-function OneProduct({ userInfo, products }) {
+function OneProduct({
+  userInfo,
+  getCartProducts,
+  getWishlist,
+  getData,
+  products,
+}) {
   const { id } = useParams();
   const [oneProductData, setOneProductData] = useState(null);
-  const [productSize, setProductSize] = useState("M");
+  const [productSize, setProductSize] = useState(null);
   const [productCount, setProductCount] = useState(1);
   const [productLiked, setProductLiked] = useState(false);
-  const [productColor, setProductColor] = useState("blue");
+  const [productColor, setProductColor] = useState(null);
   const [descrLength, setDescrLength] = useState(150);
+  const [showModal, setShowModal] = useState(false);
+  const [productId, setProductId] = useState(null);
   const [mainImgOrder, setMainImgOrder] = useState(0);
 
   const navigate = useNavigate();
@@ -47,10 +56,10 @@ function OneProduct({ userInfo, products }) {
 
   useEffect(() => {
     getOneProduct();
+    getData();
   }, []);
 
   // Add to Cart function
-
   const addToCart = () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -78,11 +87,17 @@ function OneProduct({ userInfo, products }) {
     fetch(`${link}/order/add-to-cart/`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        toast.success(result);
+        toast.success(result.message);
+        getCartProducts();
+        productSize(null);
+        productCount(1);
+        productColor(null);
+        getOneProduct();
       })
       .catch((error) => console.error(error));
   };
 
+  // Add to Liked function
   const addToLiked = () => {
     const myHeaders = new Headers();
     myHeaders.append(
@@ -98,17 +113,147 @@ function OneProduct({ userInfo, products }) {
       .then((response) => response.json())
       .then((result) => {
         toast.success(result.message);
-        // getData();
+        getWishlist();
       })
       .catch((error) => console.error(error));
   };
-  console.log(oneProductData);
-
+  const closeModal = (e) => {
+    if (e.target.classList.contains("cartModalBack")) {
+      setShowModal(false);
+      productCount(1);
+      setProductColor(null);
+      setProductSize(null);
+    } else {
+      setShowModal(true);
+    }
+  };
   return (
     <div className="oneProduct">
       <main>
         <section className="mainSection">
           <div className="container">
+            <div
+              onClick={(e) => {
+                closeModal(e);
+              }}
+              className={showModal ? "cartModalBack" : "hidden"}
+            >
+              <div className="cartModal">
+                <div className="leftSide">
+                  <div className="modalImgBox">
+                    <img
+                      src={`${link}/${oneProductData?.pictures[0].file}`}
+                      alt={oneProductData?.pictures[0].file}
+                    />
+                  </div>
+                  <button className="seeMoreBtn">Read more</button>
+                </div>
+                <div className="rightSide">
+                  <h2>Product nomi</h2>
+                  <div className="selectColor">
+                    <div className="partTitle">
+                      <h3>Color: </h3>
+                      <p>{productColor ? productColor : null}</p>
+                    </div>
+                    <div className="selectColors">
+                      {oneProductData?.properties.color.map((color, index) => {
+                        return (
+                          <div
+                            className={
+                              productColor ==
+                              oneProductData.properties.color[index]
+                                ? "color active"
+                                : "color"
+                            }
+                            onClick={() => {
+                              setProductColor(
+                                oneProductData?.properties.color[index]
+                              );
+                            }}
+                            style={{
+                              backgroundColor:
+                                oneProductData?.properties.color[index],
+                            }}
+                          ></div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  {oneProductData?.properties.size && (
+                    <div className="selectSize">
+                      <div className="partTitle">
+                        <h3>Size: </h3>
+                        <p>{productSize ? productSize : null}</p>
+                      </div>
+                      <div className="selectSizes">
+                        {oneProductData.properties.size.map((size, index) => {
+                          return (
+                            <div
+                              onClick={() => {
+                                setProductSize(size);
+                              }}
+                              className={
+                                productSize == oneProductData.properties.size[index]
+                                  ? "sizeItem active"
+                                  : "sizeItem"
+                              }
+                            >
+                              <p>{size}</p>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                  <div className="selectQuantity">
+                    <div className="partTitle">
+                      <h3>Quantity:</h3>
+                      <p className="productQuantity">{productCount}</p>
+                    </div>
+                    <div className="counter">
+                      <button
+                        onClick={() => {
+                          setProductCount(
+                            productCount > 1 ? productCount - 1 : productCount
+                          );
+                        }}
+                      >
+                        -
+                      </button>
+                      <p>{productCount}</p>
+                      <button
+                        onClick={() => {
+                          setProductCount(productCount + 1);
+                        }}
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                  <div className="partTitle">
+                    <h3>Price: </h3>
+                    <p>200000</p>
+                    <p className="nonActivePrice">240000</p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      addToCart();
+                      setShowModal(false);
+                      if (productCount > 0 && productColor) {
+                        toast.success(
+                          "Mahsulot karzinkaga muvaffaqiyatli qo'shildi!"
+                        );
+                      } else {
+                        toast.error("Tanlanmagan xususiyat bor!");
+                      }
+                    }}
+                    className="viewBtn"
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
             <div className="pageWay">
               <p>Account </p>
               <p>/</p>
@@ -126,7 +271,7 @@ function OneProduct({ userInfo, products }) {
                     className="itemImg"
                   >
                     <img
-                      src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[0]?.file}`}
+                      src={`${link}/${oneProductData?.pictures[0]?.file}`}
                       alt=""
                     />
                   </div>
@@ -137,7 +282,7 @@ function OneProduct({ userInfo, products }) {
                     className="itemImg"
                   >
                     <img
-                      src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[1]?.file}`}
+                      src={`${link}/${oneProductData?.pictures[1]?.file}`}
                       alt=""
                     />
                   </div>
@@ -148,7 +293,7 @@ function OneProduct({ userInfo, products }) {
                     className="itemImg"
                   >
                     <img
-                      src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[2]?.file}`}
+                      src={`${link}/${oneProductData?.pictures[2]?.file}`}
                       alt=""
                     />
                   </div>
@@ -159,14 +304,14 @@ function OneProduct({ userInfo, products }) {
                     className="itemImg"
                   >
                     <img
-                      src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[3]?.file}`}
+                      src={`${link}/${oneProductData?.pictures[3]?.file}`}
                       alt=""
                     />
                   </div>
                 </div>
                 <div className="mainImg">
                   <img
-                    src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[mainImgOrder]?.file}`}
+                    src={`${link}/${oneProductData?.pictures[mainImgOrder]?.file}`}
                     alt=""
                   />
                 </div>
@@ -284,7 +429,6 @@ function OneProduct({ userInfo, products }) {
                   <button
                     onClick={() => {
                       if (userInfo.id) {
-                        // productSize
                         addToCart();
                       } else {
                         navigate("/signup");
@@ -307,7 +451,7 @@ function OneProduct({ userInfo, products }) {
                   >
                     <i
                       className={
-                        productLiked
+                        oneProductData
                           ? "fa-solid fa-heart liked"
                           : "fa-regular fa-heart"
                       }
@@ -358,7 +502,15 @@ function OneProduct({ userInfo, products }) {
                   if (oneProductData?.category.id == product.category.id) {
                     return (
                       <SwiperSlide>
-                        <ProductCard key={product.id} product={product} />
+                        <ProductCard
+                          key={product.id}
+                          product={product}
+                          userInfo={userInfo}
+                          setProductId={setProductId}
+                          setShowModal={setShowModal}
+                          getData={getData}
+                          getWishlist={getWishlist}
+                        />
                       </SwiperSlide>
                     );
                   } else {

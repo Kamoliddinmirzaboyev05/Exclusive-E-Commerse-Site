@@ -170,9 +170,20 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
         <Route path="/account" element={<Account userInfo={userInfo} />} />
-        <Route path="/cart" element={<Cart cartProducts={cartProducts}  getCartProducts={getCartProducts} />} />
+        <Route
+          path="/cart"
+          element={
+            <Cart
+              cartProducts={cartProducts}
+              getCartProducts={getCartProducts}
+            />
+          }
+        />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/categoryfilter/category/:id" element={<CategoryFilter />} />
+        <Route
+          path="/categoryfilter/category/:id"
+          element={<CategoryFilter />}
+        />
         <Route
           path="/search"
           element={<Search searchVal={searchVal} products={products} />}
@@ -187,7 +198,15 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route
           path="/oneProduct/:id"
-          element={<OneProduct products={products} userInfo={userInfo} />}
+          element={
+            <OneProduct
+              getWishlist={getWishlist}
+              getCartProducts={getCartProducts}
+              getData={getData}
+              products={products}
+              userInfo={userInfo}
+            />
+          }
         />
         <Route path="*" element={<ErrorPage />} />
       </Routes>

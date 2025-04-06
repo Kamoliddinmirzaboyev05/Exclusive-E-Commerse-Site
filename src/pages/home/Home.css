@@ -47,7 +47,7 @@
 .flashSales {
   position: relative;
 }
-.flashSales .cartModalBack {
+.cartModalBack {
   display: flex;
   position: fixed;
   align-items: center;
@@ -61,7 +61,7 @@
   opacity: 0;
   z-index: -1;
 }
-.flashSales .cartModalBack .cartModal {
+.cartModalBack .cartModal {
   width: 600px;
   padding: 20px;
   background-color: white;
@@ -72,16 +72,16 @@
   position: relative;
   z-index: 1000;
 }
-.flashSales .cartModalBack .cartModal .leftSide {
+.cartModalBack .cartModal .leftSide {
   display: block;
 }
-.flashSales .cartModalBack .rightSide {
+.cartModalBack .rightSide {
   width: 300px;
 }
-.flashSales .cartModalBack .leftSide {
+.cartModalBack .leftSide {
   width: 250px;
 }
-.flashSales .cartModalBack .rightSide .selectColors .color {
+.cartModalBack .rightSide .selectColors .color {
   width: 25px;
   height: 25px;
   border-radius: 50%;
@@ -90,10 +90,10 @@
 .selectColors .color.active {
   box-shadow: 0px 0px 10px 2px #db4444;
 }
-.flashSales .sectionTitle {
+.sectionTitle {
   padding-bottom: 0;
 }
-.flashSales .cartModalBack .selectColor {
+.cartModalBack .selectColor {
   display: block !important;
   border-bottom: 3px solid #b3b3b3;
   padding: 10px 0;
@@ -101,17 +101,17 @@
 .productQuantity {
   width: 50px !important;
 }
-.flashSales .cartModalBack .rightSide .partTitle {
+.cartModalBack .rightSide .partTitle {
   display: flex;
   gap: 10px;
   padding-bottom: 15px;
   align-items: center;
 }
-.flashSales .cartModalBack .selectColors {
+.cartModalBack .selectColors {
   display: flex;
   gap: 10px;
 }
-.flashSales .cartModalBack .selectSize {
+.cartModalBack .selectSize {
   display: block !important;
   border-bottom: 3px solid #b3b3b3;
   padding-bottom: 10px;
