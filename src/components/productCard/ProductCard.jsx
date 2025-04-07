@@ -131,6 +131,7 @@ function ProductCard({
           )}
           <div className="productImg">
             <img
+            // aksdjdslfjslkfjsdfs
               src={`${link}/${product?.pictures[0]}`}
               alt={product?.pictures}
             />
