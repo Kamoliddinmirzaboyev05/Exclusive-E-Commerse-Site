@@ -161,7 +161,8 @@ function Home({ products, getCartProducts, userInfo, getData, getWishlist }) {
                   <Link
                     to={`/categoryfilter/category/${category.id}`}
                     key={category.id}
-                    className="row">
+                    className="row"
+                  >
                     <div className="categoryData">
                       <img src={category.image} alt={category.title} />
                       <p>{category.title}</p>
@@ -594,23 +595,32 @@ function Home({ products, getCartProducts, userInfo, getData, getWishlist }) {
             <div className="leftData">
               <p className="sectionTitle">Categories</p>
               <h2>Enhance Your Music Experience</h2>
-              <h1>sarvarbek qo'shildi</h1>
               <div className="discTimer">
                 <div className="discTimerItem">
-                  <h2>23</h2>
+                  <h2>
+                    {" "}
+                    0{timeLeft.days < 9 ? timeLeft.days : "0" + timeLeft.days}
+                  </h2>
+                  <p>Days</p>
+                </div>
+                <div className="discTimerItem">
+                  <h2>
+                    {" "}
+                    {timeLeft.hours > 9 ? timeLeft.hours : "0" + timeLeft.hours}
+                  </h2>
                   <p>Hours</p>
                 </div>
                 <div className="discTimerItem">
-                  <h2>23</h2>
-                  <p>Hours</p>
+                  <h2>  {timeLeft.minutes > 9
+                        ? timeLeft.minutes
+                        : "0" + timeLeft.minutes}</h2>
+                  <p>Minutes</p>
                 </div>
                 <div className="discTimerItem">
-                  <h2>23</h2>
-                  <p>Hours</p>
-                </div>
-                <div className="discTimerItem">
-                  <h2>23</h2>
-                  <p>Hours</p>
+                  <h2> {timeLeft.seconds > 9
+                        ? timeLeft.seconds
+                        : "0" + timeLeft.seconds}</h2>
+                  <p>Seconds</p>
                 </div>
               </div>
               <button className="viewBtn buyNowBtn">Buy Now</button>

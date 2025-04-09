@@ -7,6 +7,9 @@ import { link } from "../../config";
 function Wishlist({ likedProducts, getWishlist }) {
   useEffect(() => {
     getWishlist();
+    window.scrollTo({
+      top: "0",
+    });
   }, []);
 
   return (
@@ -19,7 +22,7 @@ function Wishlist({ likedProducts, getWishlist }) {
                 Wishlist <span>({likedProducts?.length})</span>
               </h3>
               <div>
-                <button>Move All To Bag</button>
+                <button>Delete all from wishlist</button>
               </div>
             </div>
             <div className="productsBlock">

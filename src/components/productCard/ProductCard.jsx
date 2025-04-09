@@ -58,7 +58,6 @@ function ProductCard({
     )
       .then((response) => response.text())
       .then((result) => {
-        getData();
         toast.info("Maxsulot istaklar ro'yhatidan olib tashlandi!");
         getWishlist();
       })
@@ -131,15 +130,16 @@ function ProductCard({
           )}
           <div className="productImg">
             <img
-            // aksdjdslfjslkfjsdfs
               src={`${link}/${product?.pictures[0]}`}
               alt={product?.pictures}
             />
           </div>
           <button
             onClick={(e) => {
-              if (userInfo.id) {
-                getOneModalProduct();
+              e.preventDefault();
+
+              if (userInfo?.id) {
+                // getOneModalProduct(); 
                 setProductId(product?.id);
                 e.preventDefault();
                 setShowModal(true);

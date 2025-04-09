@@ -207,11 +207,12 @@
   gap: 80px;
 }
 
-.sectionTitle {
+.flashSales .sectionTitle {
   font-size: 36px;
   font-weight: 600;
   line-height: 48px;
   letter-spacing: 4%;
+  padding: 0;
 }
 
 .timer {
@@ -420,7 +421,7 @@
 }
 
 .discTimerItem p {
-  font-size: 11px;
+  font-size: 10px !important;
   font-weight: 400;
   line-height: 18px;
   padding: 0 !important;

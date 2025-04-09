@@ -73,7 +73,9 @@ function OneProduct({
     getOneProduct();
     getData();
   }, []);
-
+  useEffect(() => {
+    getOneModalProduct();
+  }, [productId]);
   // Add to Cart function
   const addToCart = () => {
     const myHeaders = new Headers();
@@ -104,10 +106,11 @@ function OneProduct({
       .then((result) => {
         toast.success(result.message);
         getCartProducts();
-        productSize(null);
-        productCount(1);
-        productColor(null);
+        setProductSize(null);
+        setProductCount(1);
+        setProductColor(null);
         getOneProduct();
+        setShowModal(false);
       })
       .catch((error) => console.error(error));
   };
@@ -279,11 +282,11 @@ function OneProduct({
 
             {/* modal end */}
             <div className="pageWay">
-              <p>Account </p>
+              <p>Home </p>
               <p>/</p>
-              <p>Gaming</p>
-              <p>/</p>
-              <p className="activePage">Havic HV G-92 Gamepad</p>
+              <p className="activePage">
+                {oneProductData && String(oneProductData?.title).slice(0, 28)}
+              </p>
             </div>
             <div className="mainBlock">
               <div className="leftSide">

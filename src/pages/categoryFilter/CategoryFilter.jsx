@@ -30,13 +30,13 @@ function CategoryFilter() {
   useEffect(() => {
     window.scrollTo({
       top: "0",
-    }); 
+    });
   }, []);
 
   return (
     <div className="categoryFilterPage">
       <div className="container">
-        <h2 className="pageTitle">Erkaklar kiyimi</h2>
+        <h2 className="pageTitle">{categoryProducts && categoryProducts[0].category?.title }</h2>
         <div className="productsBlock">
           {categoryProducts?.map((product) => {
             return <ProductCard product={product} />;
