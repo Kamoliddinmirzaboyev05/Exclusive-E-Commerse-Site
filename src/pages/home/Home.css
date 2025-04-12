@@ -664,3 +664,10 @@
 .swiper-pagination-bullet-active {
   background-color: #db4444 !important;
 }
+.bestSelling .swiper-button-prev {
+  background-color: red !important;
+  right: 0 !important;
+  left: 100px !important;
+  color: #000 !important;
+  z-index: 99 !important;
+}

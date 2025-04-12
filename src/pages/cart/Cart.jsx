@@ -5,6 +5,11 @@ import { link } from "../../config";
 import { toast } from "react-toastify";
 
 function Cart({ getCartProducts, cartProducts }) {
+  const totalPrice = cartProducts?.cart_items?.reduce(
+    (sum, item) => sum + item.subtotal,
+    0
+  );
+
   // delete product function
   const deleteCartProduct = (id) => {
     const myHeaders = new Headers();
@@ -91,14 +96,7 @@ function Cart({ getCartProducts, cartProducts }) {
             })}
           </div>
 
-          <div className="cartBtn">
-            <div>
-              <button>Return To Shop</button>
-            </div>
-            <div>
-              <button>Update Cart</button>
-            </div>
-          </div>
+      
           <div className="cartBlock">
             <div className="CartCupon">
               <div>
@@ -112,15 +110,15 @@ function Cart({ getCartProducts, cartProducts }) {
               <h3>Cart Total</h3>
               <div className="cartTotalSub">
                 <p>Subtotal:</p>
-                <p>$1750</p>
+                <p>{totalPrice}</p>
               </div>
               <div className="cartTotalShop">
                 <p>Shipping:</p>
-                <p>Free</p>
+                <p>{totalPrice * 0.01}</p>
               </div>
               <div className="cartTotalTotal">
                 <p>Total:</p>
-                <p>$1750</p>
+                <p>{totalPrice + totalPrice * 0.01}</p>
               </div>
               <Link to={"/checkout"}>
                 <button>Procees to checkout</button>

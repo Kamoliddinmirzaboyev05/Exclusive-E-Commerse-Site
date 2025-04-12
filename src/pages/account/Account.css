@@ -14,72 +14,72 @@
   font-weight: 400;
   line-height: 21px;
 }
-.accountPage .rightForm {
-  padding: 40px 80px;
-  width: 870px;
-}
-.formTitle {
-  font-size: 20px;
-  line-height: 28px;
-  font-weight: 500;
-  color: #db4444;
-  padding-bottom: 16px;
-}
-.row {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 24px;
-}
-.rowItem {
-  display: flex;
-  flex-direction: column;
-}
-.phoneInput{
-  padding-bottom: 16px;
-}
-.rowItem label {
-  padding-bottom: 8px;
-}
-.rowItem input {
-  width: 330px;
-  padding: 13px 16px;
-  background-color: #f5f5f5;
-  border: none;
-  font-size: 16px;
-  outline: none;
-  border-radius: 4px;
-}
-.passwordChanges {
-  width: 100%;
-}
-.passwordChanges input {
-  width: 100%;
-  font-size: 16px;
-}
-.passwordChanges h2 {
-  padding-bottom: 8px;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-}
-.passwordChanges input {
-  padding: 13px 16px;
-  margin-bottom: 16px;
-  background-color: #f5f5f5;
-  border: none;
-  font-size: 16px;
-  outline: none;
-  border-radius: 4px;
-}
-.formBtns {
-  display: flex;
-  justify-content: end;
-  gap: 32px;
-}
-.cancelBtn {
-  border: none;
-  background-color: transparent;
-}
+  .accountPage .rightForm {
+    padding: 40px 80px;
+    width: 870px;
+  }
+  .formTitle {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 500;
+    color: #db4444;
+    padding-bottom: 16px;
+  }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 24px;
+  }
+  .rowItem {
+    display: flex;
+    flex-direction: column;
+  }
+  .phoneInput{
+    padding-bottom: 16px;
+  }
+  .rowItem label {
+    padding-bottom: 8px;
+  }
+  .rowItem input {
+    width: 330px;
+    padding: 13px 16px;
+    background-color: #f5f5f5;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    border-radius: 4px;
+  }
+  .passwordChanges {
+    width: 100%;
+  }
+  .passwordChanges input {
+    width: 100%;
+    font-size: 16px;
+  }
+  .passwordChanges h2 {
+    padding-bottom: 8px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+  }
+  .passwordChanges input {
+    padding: 13px 16px;
+    margin-bottom: 16px;
+    background-color: #f5f5f5;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    border-radius: 4px;
+  }
+  .formBtns {
+    display: flex;
+    justify-content: end;
+    gap: 32px;
+  }
+  .cancelBtn {
+    border: none;
+    background-color: transparent;
+  }
 .accountPage .leftData {
   box-shadow: 0, 0, 0, 0 transparent;
 }

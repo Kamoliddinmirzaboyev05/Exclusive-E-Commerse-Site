@@ -12,7 +12,7 @@
   line-height: 30px;
   padding-bottom: 48px;
 }
-.details form {
+.details .form {
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -66,7 +66,10 @@
 }
 .orderProducts {
   display: flex;
+  height: 250px;
+  overflow-y: auto;
   flex-direction: column;
+  padding-right: 10px;
 }
 .orderProductItem {
   display: flex;
@@ -122,6 +125,9 @@
 }
 .Place{
   padding-top: 30px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
 }
 .Place button{
   padding: 16px 48px;
@@ -131,4 +137,25 @@
   color: white;
   background-color: #DF4028;
   border: 1.5px solid #DF4028;
+}
+::-webkit-scrollbar {
+  width: 8px; /* vertikal uchun */
+  height: 8px; /* gorizontal uchun */
+}
+
+/* Scrollbar "track" (orqa fon) */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* Scrollbar "thumb" (harakatlanuvchi qismi) */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Hover holatida thumb */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

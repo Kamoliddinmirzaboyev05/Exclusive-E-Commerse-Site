@@ -18,6 +18,7 @@ import { Bounce, ToastContainer } from "react-toastify";
 import { link } from "./config";
 import Search from "./pages/search/Search";
 import CategoryFilter from "./pages/categoryFilter/CategoryFilter";
+import OrderProducts from "./pages/orderProducts/OrderProducts";
 function App() {
   const [userInfo, setUserInfo] = useState(null);
   const [products, setProducts] = useState(null);
@@ -179,7 +180,7 @@ function App() {
             />
           }
         />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/checkout" element={<Checkout cartProducts={cartProducts} />} />
         <Route
           path="/categoryfilter/category/:id"
           element={<CategoryFilter />}
@@ -196,6 +197,7 @@ function App() {
         />
         <Route path="/signin" element={<SignIn getUserData={getUserData} />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/orderproducts" element={<OrderProducts />} />
         <Route
           path="/oneProduct/:id"
           element={

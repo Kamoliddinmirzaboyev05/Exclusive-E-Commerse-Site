@@ -1,137 +1,204 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Checkout.css";
-function Checkout() {
+import { link } from "../../config";
+import { Link } from "react-router-dom";
+function Checkout({ cartProducts }) {
+  const [company, setCompany] = useState(null);
+  const [street_address, setStreetAddress] = useState(null);
+  const [apartment, setApartment] = useState(null);
+  const [city, setCity] = useState(null);
+  const [phone, setPhone] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [paying_amount, setPayingAmount] = useState(null);
+  const [coupon_code, setCouponCode] = useState(null);
+  const [cart_item_ids, setCartItems] = useState(null);
+
+  const totalPrice = cartProducts?.cart_items?.reduce(
+    (sum, item) => sum + item.subtotal,
+    0
+  );
+  const productIds = cartProducts?.cart_items?.map((product) => product.id);
+  const createOrder = () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append(
+      "Authorization",
+      `Bearer ${localStorage.getItem("token")}`
+    );
+
+    const raw = JSON.stringify({
+      company,
+      street_address,
+      apartment,
+      city,
+      phone,
+      email,
+      paying_amount: 1,
+      payment_type: "cash",
+      coupon_code,
+      save_data: true,
+      cart_item_ids,
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch(`${link}/order/create/`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => console.log(result))
+      .catch((error) => console.error(error));
+  };
+  useEffect(() => {
+    setCartItems(productIds);
+  }, [cartProducts]);
   return (
     <div className="checkoutPage">
       <div className="container">
         <div className="pageWay">
           <p>Home</p>
           <p>/</p>
-          <p>My Account</p>
+          <p>Cart</p>
           <p>/</p>
           <p>Product</p>
           <p>/</p>
-          <p>View Cart</p>
-          <p>/</p>
           <p className="activePage">My Account</p>
         </div>
-        <div className="mainContent">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            createOrder();
+          }}
+          className="mainContent"
+        >
           <div className="details">
             <h2 className="formTitle">Billing Details</h2>
-            <form action="#">
-              <div className="formItem">
-                <label htmlFor="">First Name*</label>
-                <input type="text" />
-              </div>
+            <div className="form">
               <div className="formItem">
                 <label htmlFor="">Company Name</label>
-                <input type="text" />
+                <input
+                  onChange={(e) => {
+                    setCompany(e.target.value);
+                  }}
+                  required
+                  type="text"
+                />
               </div>
               <div className="formItem">
                 <label htmlFor="">Street Address*</label>
-                <input type="text" />
+                <input
+                  onChange={(e) => {
+                    setStreetAddress(e.target.value);
+                  }}
+                  required
+                  type="text"
+                />
               </div>
               <div className="formItem">
                 <label htmlFor="">Apartment, floor, etc. (optional)</label>
-                <input type="text" />
+                <input
+                  onChange={(e) => {
+                    setApartment(e.target.value);
+                  }}
+                  required
+                  type="text"
+                />
               </div>
               <div className="formItem">
                 <label htmlFor="">Town/City*</label>
-                <input type="text" />
+                <input
+                  onChange={(e) => {
+                    setCity(e.target.value);
+                  }}
+                  required
+                  type="text"
+                />
               </div>
               <div className="formItem">
                 <label htmlFor="">Phone Number*</label>
-                <input type="text" />
+                <input
+                  onChange={(e) => {
+                    setPhone(e.target.value);
+                  }}
+                  required
+                  type="text"
+                />
               </div>
               <div className="formItem">
                 <label htmlFor="">Email Address*</label>
-                <input type="text" />
+                <input
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                  required
+                  type="text"
+                />
               </div>
               <div className="check">
-                <input type="checkbox" />
+                <input required type="checkbox" />
                 <p>Save this information for faster check-out next time </p>
               </div>
-            </form>
+            </div>
           </div>
           <div className="checkoutProducts">
             <div className="orderProducts">
-              <div className="orderProductItem">
-                <div className="orderProductData">
-                  <div className="productItemImg">
-                    <img src="/public/card1.1.png" alt="" />
+              {cartProducts?.cart_items?.map((product) => {
+                return (
+                  <div key={product.id} className="orderProductItem">
+                    <div className="orderProductData">
+                      <div className="productItemImg">
+                        <img
+                          src={`${link}/${product?.pictures[0].file}`}
+                          alt=""
+                        />
+                      </div>
+                      <p>{String(product?.title).slice(0, 45)}</p>
+                    </div>
+                    <p>{product?.subtotal}</p>
                   </div>
-                  <p>LCD Monitor</p>
-                </div>
-                <p>$650</p>
-              </div>
-              <div className="orderProductItem">
-                <div className="orderProductData">
-                  <div className="productItemImg">
-                    <img src="/public/card1.3.png" alt="" />
-                  </div>
-                  <p>H1 Gamepad</p>
-                </div>
-                <p>$650</p>
-              </div>
+                );
+              })}
             </div>
             <div className="calculateProducts">
               <div className="rowCalculate">
                 <p>Subtotal:</p>
-                <p>$1750</p>
+                <p>{Number(totalPrice).toFixed(2)}</p>
               </div>
               <div className="rowCalculate">
                 <p>Shipping:</p>
-                <p>Free</p>
+                <p>{Number(totalPrice * 0.01).toFixed(2)}</p>
               </div>
               <div className="rowCalculate rowactive">
                 <p>Total:</p>
-                <p>$1750</p>
-              </div>
-            </div>
-            <div className="bank">
-              <div className="BankRadio">
-                <div>
-                  <input type="radio" name="bank" />
-                </div>
-                <div>
-                  <p>
-                    Bank
-                  </p>
-                </div>
-              </div>
-              <div>
-                <img src="/public/Frame 834.svg" alt="" />
-              </div>
-            </div>
-            <div className="cash">
-              <div className="BankRadio">
-                <div>
-                  <input type="radio" name="bank" />
-                </div>
-                <div>
-                  <p>
-                    Cash on delivery
-                  </p>
-                </div>
+                <p>{Number(totalPrice + totalPrice * 0.01).toFixed(2)}</p>
               </div>
             </div>
             <div className="CartCupon">
               <div>
-                <input type="text" placeholder='Coupon Code' />
+                <input
+                  onChange={(e) => {
+                    setCouponCode(e.preventDefault());
+                  }}
+                  type="text"
+                  placeholder="Coupon Code"
+                />
               </div>
               <div>
-                <button>
-                  Apply Coupon
-                </button>
+                <button>Apply Coupon</button>
               </div>
             </div>
             <div className="Place">
-              <button>
-                Place Order
-              </button>
+              <button>Place Order</button>
+              <Link to={"/orderproducts"}>
+                {" "}
+                <button>Order List</button>
+              </Link>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
