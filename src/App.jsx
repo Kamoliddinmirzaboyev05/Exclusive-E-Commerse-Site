@@ -127,9 +127,11 @@ function App() {
       .catch((error) => console.error("Error:", error));
   };
   useEffect(() => {
-    getUserData();
-    getWishlist();
-    getCartProducts();
+    if (localStorage.getItem("token")) {
+      getUserData();
+      getWishlist();
+      getCartProducts();
+    }
   }, []);
   return (
     <BrowserRouter>
@@ -180,7 +182,10 @@ function App() {
             />
           }
         />
-        <Route path="/checkout" element={<Checkout cartProducts={cartProducts} />} />
+        <Route
+          path="/checkout"
+          element={<Checkout cartProducts={cartProducts} />}
+        />
         <Route
           path="/categoryfilter/category/:id"
           element={<CategoryFilter />}
